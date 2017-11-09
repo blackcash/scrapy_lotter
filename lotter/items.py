@@ -22,6 +22,5 @@ class LotterItem(scrapy.Item):
 
 class TotalItem(scrapy.Item):
     # define the fields for your item here like:
-    num = scrapy.Field()
-    finish = scrapy.Field()
-    
+    nums = scrapy.Field()
+    counts = scrapy.Field()
