@@ -16,7 +16,12 @@ class AppleCrawler(CrawlSpider):
 		res = BeautifulSoup(response.body,'lxml')
 		tbodys = res.select('tbody')
 		trs = tbodys[4].select('tr')
-		cou = TotalItem()
+
+		nums = []
+		counts = []
+		for i in range(1,50):
+			nums.append(i)
+			counts.append(0)
 		for tr in trs:
 			dic = LotterItem()
 			for n in range(0,9):
@@ -27,6 +32,8 @@ class AppleCrawler(CrawlSpider):
 					dic['date'] = data
 				else:
 					dic['num'+str(n-1)] = data
+					print ('----',data)
+					counts[int(data)-1] += 1
 					'''
 					if data in cou:
 						cou[data] += 1
@@ -35,8 +42,9 @@ class AppleCrawler(CrawlSpider):
 					'''	
 				#print (tr.select('td')[n].text)
 			yield dic
-		print (cou)
-		cou['finish'] = '1'
-		cou['num'] = '1'
+		cou = TotalItem()
+		cou['nums'] = nums
+		cou['counts'] = counts
+		print ('=========',cou)
 		yield cou
 			#num.append(dic)
