@@ -12,16 +12,16 @@ class LotterPipeline(object):
 	    self.fileCsv1 = open('lotte.csv', 'w')
 	    self.fieldnames1 = ['per','date','num1','num2','num3','num4','num5','num6','num7']
 	    self.writer1 = csv.DictWriter(self.fileCsv1, fieldnames=self.fieldnames1)
-	    self.fileCsv2 = open('total.csv', 'w')
-	    self.fieldnames2 = ['num']
-	    self.writer2 = csv.DictWriter(self.fileCsv2, fieldnames=self.fieldnames2)
 	    self.writer1.writeheader()
-	    self.writer2.writeheader()
+	    self.fileCsv2 = open('total.csv', 'w')
+	    self.fileCsv2.write("nums,counts\n")
 
 	def process_item(self,item,spider):
 		dictionary = dict(item)
+		print (dictionary,'*****')
 		if 'num1' in dictionary:
 			self.writer1.writerow(dictionary)
 		else:
-			self.writer2.writerow(dictionary)
+			for num in dictionary['nums']:
+				self.fileCsv2.write(str(num)+","+str(dictionary['counts'][num-1])+"\n")
 		return item
