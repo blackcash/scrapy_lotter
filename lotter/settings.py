@@ -66,6 +66,7 @@ ROBOTSTXT_OBEY = True
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'lotter.pipelines.LotterPipeline': 300,
+    'lotter.pipelines.CounterPipeline': 800,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
