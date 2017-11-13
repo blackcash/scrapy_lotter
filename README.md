@@ -7,4 +7,4 @@
 >>    'lotter.pipelines.LotterPipeline': 300, <br>
 >> }  <br>
 > AppleCrawler.py --> 資料取得的地方其中name即是要呼叫時使用，在此的name = 'lotter' <br>
->> scrapy crawl apple  <br>
+>> scrapy crawl lotter  <br>
